@@ -4,7 +4,7 @@
 > A daily astrology transit skill for AI agents, powered by the [CelestChart](https://xp.broad-intelli.com) API.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![skills.sh](https://img.shields.io/badge/skills.sh-install-blue)](https://skills.sh)
+[![ClaWhub](https://img.shields.io/badge/ClaWhub-install-blueviolet)](https://clawhub.ai/maye08/celestchart-daily)
 
 ---
 
@@ -40,10 +40,12 @@ AI 会自动调用 CelestChart API，返回基于你个人本命盘的当天运�
 
 ## 🚀 安装方式
 
-### 方式一：通过 skills CLI 安装（推荐）
+### 方式一：通过 ClaWhub 安装（推荐）
+
+访问 Skill 页面：[clawhub.ai/maye08/celestchart-daily](https://clawhub.ai/maye08/celestchart-daily)
 
 ```bash
-npx skills add maye08/celestchart-astrology-skills
+npx clawhub@latest install celestchart-daily
 ```
 
 ### 方式二：手动复制到 OpenClaw
@@ -163,5 +165,5 @@ celestchart-daily/
 ## 🔗 相关链接
 
 - 🌐 **CelestChart 官网**：[xp.broad-intelli.com](https://xp.broad-intelli.com)
-- 📖 **skills.sh**：[skills.sh](https://skills.sh)
+- 🔧 **ClaWhub Skill 页面**：[clawhub.ai/maye08/celestchart-daily](https://clawhub.ai/maye08/celestchart-daily)
 - 🐙 **本仓库**：[github.com/maye08/celestchart-astrology-skills](https://github.com/maye08/celestchart-astrology-skills)
