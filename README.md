@@ -34,7 +34,7 @@ AI 会自动调用 CelestChart API，返回基于你个人本命盘的当天运�
 
 1. **CelestChart 账号** — 前往 [xp.broad-intelli.com](https://xp.broad-intelli.com) 注册或快速登录
 2. **VIP 会员** — 登录即免费送 VIP（1个月）
-3. **API Key** — 登录后在「用户中心 → API Key 管理」生成，格式为 `csk_live_xxxx`
+3. **API Key** — 登录后在「用户中心 → API Key 管理」生成
 
 ---
 
@@ -66,7 +66,7 @@ cp -r celestchart-astrology-skills/celestchart-daily ~/.openclaw/skills/
 
 ```bash
 # ── 必填 ─────────────────────────────────────────
-export CELESTCHART_API_KEY="csk_live_xxxxxxxxxxxxxxxx"   # 在用户中心生成，替换为你的真实 Key
+export CELESTCHART_API_KEY="<在用户中心生成的 API Key>"
 
 export CELESTCHART_BIRTH_YEAR="1990"            # 出生年
 export CELESTCHART_BIRTH_MONTH="1"              # 出生月（1-12）
