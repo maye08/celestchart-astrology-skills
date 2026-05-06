@@ -66,7 +66,7 @@ cp -r celestchart-astrology-skills/celestchart-daily ~/.openclaw/skills/
 
 ```bash
 # ── 必填 ─────────────────────────────────────────
-export CELESTCHART_API_KEY="csk_live_你的Key"   # 在用户中心生成
+export CELESTCHART_API_KEY="csk_live_xxxxxxxxxxxxxxxx"   # 在用户中心生成，替换为你的真实 Key
 
 export CELESTCHART_BIRTH_YEAR="1990"            # 出生年
 export CELESTCHART_BIRTH_MONTH="1"              # 出生月（1-12）
@@ -104,6 +104,15 @@ source ~/.zshrc   # 或 source ~/.bashrc
 | 悉尼 | 151.2 | -33.9 | 10 |
 
 > 其他城市可前往 [latlong.net](https://www.latlong.net) 查询精确经纬度。
+
+---
+
+## 🔒 安全说明
+
+- **保护 API Key**：`CELESTCHART_API_KEY` 存储在 shell 配置文件中，请勿将含有真实 Key 的 `.zshrc` / `.bashrc` 提交到公开仓库或分享给他人。
+- **密钥泄露处理**：若 API Key 可能已暴露，请立即前往 [CelestChart 用户中心](https://xp.broad-intelli.com/usercenter) 撤销并重新生成。
+- **固定服务地址**：本 Skill 仅向 CelestChart 官方地址 `https://xp.broad-intelli.com` 发送请求，不支持自定义服务地址，确保你的 API Key 和出生信息不会被发送到第三方服务。
+- **最小权限**：建议为本 Skill 单独申请一个 API Key，与其他用途的 Key 隔离，便于独立管理和撤销。
 
 ---
 

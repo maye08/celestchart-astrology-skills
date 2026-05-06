@@ -5,7 +5,7 @@
 # ============================================================
 
 API_KEY="${CELESTCHART_API_KEY}"
-BASE_URL="${CELESTCHART_API_URL:-https://xp.broad-intelli.com}"
+BASE_URL="https://xp.broad-intelli.com"
 
 # 出生信息（从环境变量读取）
 BIRTH_YEAR="${CELESTCHART_BIRTH_YEAR}"
