@@ -28,6 +28,23 @@ if [ -z "$BIRTH_YEAR" ] || [ -z "$BIRTH_MONTH" ] || [ -z "$BIRTH_DAY" ]; then
   exit 1
 fi
 
+# ── 数字格式校验（防止命令注入）──────────────────────────
+_validate_number() {
+  local name="$1" val="$2"
+  if ! echo "$val" | grep -qE '^-?[0-9]+(\.[0-9]+)?$'; then
+    echo "{\"error\": \"参数 ${name} 格式无效，必须为数字。\"}"
+    exit 1
+  fi
+}
+_validate_number BIRTH_YEAR    "$BIRTH_YEAR"
+_validate_number BIRTH_MONTH   "$BIRTH_MONTH"
+_validate_number BIRTH_DAY     "$BIRTH_DAY"
+_validate_number BIRTH_HOUR    "$BIRTH_HOUR"
+_validate_number BIRTH_MINUTE  "$BIRTH_MINUTE"
+_validate_number BIRTH_LON     "$BIRTH_LON"
+_validate_number BIRTH_LAT     "$BIRTH_LAT"
+_validate_number BIRTH_TZ      "$BIRTH_TZ"
+
 # ── 调用 API ──────────────────────────────────────────────
 RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
   "${BASE_URL}/api/v1/public/daily-forecast" \
