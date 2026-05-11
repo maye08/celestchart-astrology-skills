@@ -1,7 +1,7 @@
 ---
 name: celestchart-daily
 description: 通过 CelestChart 星盘占星 API 获取每日个人星盘运势，包括月亮行运、情绪基调、今日重点和行星相位解读。需要 CelestChart VIP 账号和 API Key。
-version: 1.1.1
+version: 1.1.2
 license: MIT
 compatibility: Requires curl
 allowed-tools: Bash(curl:*)
@@ -93,7 +93,22 @@ bash $SKILL_DIR/run.sh
 
 ---
 
-### 4. 🎯 今日重点
+### 4. 📊 情绪稳定指数
+
+来源字段：`emotional_stability_index` 或相关情绪指数的字段
+
+**注意**：若 JSON 中存在该字段，请输出指数数值、状态及建议；若为 null 或缺失，请**完全跳过**此模块，不要输出任何内容（不要输出"无"）。情绪稳定指数越高，代表情绪越稳定。0到60分代表敏感炸药桶，61分到80分代表情绪偶有波动，80分以上代表情绪内核极稳
+
+示例：
+```
+📊 情绪稳定指数
+指数：61（偶有波动）
+建议：今天情绪基本在线，但遇到杠精时请在心里默念三遍算了吧。
+```
+
+---
+
+### 5. 🎯 今日重点
 
 来源字段：`daily_focus`
 
@@ -107,7 +122,7 @@ bash $SKILL_DIR/run.sh
 
 ---
 
-### 5. ⏰ 最佳时机
+### 6. ⏰ 最佳时机
 
 来源字段：`best_timing`
 
@@ -121,7 +136,7 @@ bash $SKILL_DIR/run.sh
 
 ---
 
-### 6. 🌙 月亮相位
+### 7. 🌙 月亮相位
 
 来源字段：`moon_aspects`（数组）
 
@@ -158,7 +173,7 @@ bash $SKILL_DIR/run.sh
 
 ---
 
-### 7. ✨ 内行星相位
+### 8. ✨ 内行星相位
 
 来源字段：`inner_planet_aspects`（数组）
 
@@ -196,7 +211,7 @@ bash $SKILL_DIR/run.sh
 
 ---
 
-### 8. 结尾
+### 9. 结尾
 
 用一句温暖的今日箴言收尾，结合当日月亮星座特点，风格温柔专业。
 

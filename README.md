@@ -21,6 +21,7 @@ AI 会自动调用 CelestChart API，返回基于你个人本命盘的当天运�
 |------|------|
 | 🌙 月亮行运 | 月亮今日星座与所在宫位 |
 | 😊 情绪基调 | 今日整体情绪倾向 |
+| 📊 情绪稳定指数 | 今日情绪稳定程度及建议 |
 | 🎯 今日重点 | 月亮宫位对应的人生领域 |
 | ⏰ 最佳时机 | 今日最佳行动时间窗口 |
 | 🌙 月亮相位 | 月亮与本命盘的行星相位及解读 |
@@ -124,7 +125,7 @@ source ~/.zshrc   # 或 source ~/.bashrc
 bash ~/.openclaw/skills/celestchart-daily/run.sh
 ```
 
-成功时会返回包含 `moon_transit`、`emotional_tone`、`daily_focus` 等字段的 JSON 数据。
+成功时会返回包含 `moon_transit`、`emotional_tone`、`emotional_stability_index`、`daily_focus` 等字段的 JSON 数据。
 
 ---
 
