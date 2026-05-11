@@ -1,7 +1,7 @@
 ---
 name: celestchart-daily
 description: 通过 CelestChart 星盘占星 API 获取每日个人星盘运势，包括月亮行运、情绪基调、今日重点和行星相位解读。需要 CelestChart VIP 账号和 API Key。
-version: 1.1.3
+version: 1.1.4
 license: MIT
 compatibility: Requires curl
 allowed-tools: Bash(curl:*)
@@ -95,7 +95,7 @@ bash $SKILL_DIR/run.sh
 
 ### 4. 📊 情绪稳定指数
 
-来源字段：`emotional_stability_index` 或相关情绪指数的字段
+来源字段：`emotional_stability_score`
 
 **注意**：若 JSON 中存在该字段，请输出指数数值、状态及建议；若为 null 或缺失，请**完全跳过**此模块，不要输出任何内容（不要输出"无"）。情绪稳定指数越高，代表情绪越稳定。0到60分代表敏感炸药桶，61分到80分代表情绪偶有波动，80分以上代表情绪内核极稳
 
