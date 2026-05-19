@@ -1,8 +1,10 @@
 #!/bin/bash
 # ============================================================
-# CelestChart 每日运势 API 调用脚本
+# CelestChart 运势与本命盘 API 调用脚本
 # 使用前请配置以下环境变量（见 README.md）
 # ============================================================
+
+ACTION="${1:-daily}"
 
 API_KEY="${CELESTCHART_API_KEY}"
 BASE_URL="https://xp.broad-intelli.com"
@@ -18,9 +20,11 @@ BIRTH_LAT="${CELESTCHART_BIRTH_LAT:-39.9}"
 BIRTH_TZ="${CELESTCHART_BIRTH_TZ:-8}"
 
 # ── 参数校验 ──────────────────────────────────────────────
-if [ -z "$API_KEY" ]; then
-  echo '{"error": "未配置 CELESTCHART_API_KEY，请先设置环境变量。前往CelestChart官网 https://xp.broad-intelli.com 用户中心生成 API Key。"}'
-  exit 1
+if [ "$ACTION" = "daily" ]; then
+  if [ -z "$API_KEY" ]; then
+    echo '{"error": "未配置 CELESTCHART_API_KEY，请先设置环境变量。前往CelestChart官网 https://xp.broad-intelli.com 用户中心生成 API Key。"}'
+    exit 1
+  fi
 fi
 
 if [ -z "$BIRTH_YEAR" ] || [ -z "$BIRTH_MONTH" ] || [ -z "$BIRTH_DAY" ]; then
@@ -46,21 +50,38 @@ _validate_number BIRTH_LAT     "$BIRTH_LAT"
 _validate_number BIRTH_TZ      "$BIRTH_TZ"
 
 # ── 调用 API ──────────────────────────────────────────────
-RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
-  "${BASE_URL}/api/v1/public/daily-forecast" \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: ${API_KEY}" \
-  -d "{
-    \"birth_year\": ${BIRTH_YEAR},
-    \"birth_month\": ${BIRTH_MONTH},
-    \"birth_day\": ${BIRTH_DAY},
-    \"birth_hour\": ${BIRTH_HOUR},
-    \"birth_minute\": ${BIRTH_MINUTE},
-    \"birth_longitude\": ${BIRTH_LON},
-    \"birth_latitude\": ${BIRTH_LAT},
-    \"birth_timezone\": ${BIRTH_TZ},
-    \"house_system\": \"W\"
-  }")
+if [ "$ACTION" = "birthchart" ]; then
+  RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+    "${BASE_URL}/api/v1/birth-chart" \
+    -H "Content-Type: application/json" \
+    -d "{
+      \"year\": ${BIRTH_YEAR},
+      \"month\": ${BIRTH_MONTH},
+      \"day\": ${BIRTH_DAY},
+      \"hour\": ${BIRTH_HOUR},
+      \"minute\": ${BIRTH_MINUTE},
+      \"longitude\": ${BIRTH_LON},
+      \"latitude\": ${BIRTH_LAT},
+      \"timezone\": ${BIRTH_TZ},
+      \"house_system\": \"P\"
+    }")
+else
+  RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+    "${BASE_URL}/api/v1/public/daily-forecast" \
+    -H "Content-Type: application/json" \
+    -H "X-API-Key: ${API_KEY}" \
+    -d "{
+      \"birth_year\": ${BIRTH_YEAR},
+      \"birth_month\": ${BIRTH_MONTH},
+      \"birth_day\": ${BIRTH_DAY},
+      \"birth_hour\": ${BIRTH_HOUR},
+      \"birth_minute\": ${BIRTH_MINUTE},
+      \"birth_longitude\": ${BIRTH_LON},
+      \"birth_latitude\": ${BIRTH_LAT},
+      \"birth_timezone\": ${BIRTH_TZ},
+      \"house_system\": \"W\"
+    }")
+fi
 
 # 分离响应体和状态码（兼容 macOS / Linux）
 HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)
